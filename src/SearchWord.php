@@ -1,6 +1,5 @@
 <?php
 namespace Jdev\Cacaalavra;
-
 class SearchWord
 {
     public static function searchWord($word)
