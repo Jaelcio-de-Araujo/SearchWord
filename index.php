@@ -13,19 +13,41 @@ use  Jdev\Cacaalavra\SearchWord;
 </head>
 <body>
 <form method="post" action="#">
-    <input type="text" name="text" placeholder="Digite o termo para pesquisa..." id="text">
-    <input type="submit" value="BUSCAR ->" id="bot">
+    <input type="text" name="text" placeholder="Digite o termo para pesquisa..." id="text" required>
+    <input type="submit" value="BUSCAR" id="bot" name="bt-send">
 
 <?php
-@$word = $_POST["text"];
+    if(isset($_POST['bt-send']))
+    {
+        $word = filter_input(INPUT_POST,'text',FILTER_SANITIZE_SPECIAL_CHARS);
+        try {
+            $resposta = SearchWord::searchWord($word);
+    
+            if($resposta === NULL)
+            {
+                throw new Exception("Palavra não encontrada.", 1); 
+            }
+            else
+            {
+                
+            foreach ($resposta  as $resposta) 
+            {
+                echo "<pre>";
+                print_r($resposta['meanings']);
+                echo "</pre>";
+            }
+    
+            }
+    
+            } 
+            catch (Exception $e)
+            {
+                echo $e->getMessage();
+            }
 
-$searching = SearchWord::searchWord($word);
+        }
+    ?>
 
-if(empty($searching))
-    die("Palavra ou termo não encontrada(o).");
-else
-    print_r($searching);
-?>
 
 </body>
 </html>
