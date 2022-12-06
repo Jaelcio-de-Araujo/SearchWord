@@ -1,5 +1,6 @@
 <?php
 namespace Jdev\Cacaalavra;
+
 class SearchWord
 {
     public static function searchWord($word)
@@ -7,6 +8,9 @@ class SearchWord
         $url = "https://significado.herokuapp.com/v2/".$word."/";
         $response = file_get_contents($url);
         $response =  json_decode($response, true);
-        return $response;
+        return isset($response['meanings']) ? $response : null;
+
+
+
     }
 }

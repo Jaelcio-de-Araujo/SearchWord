@@ -17,32 +17,12 @@ use  Jdev\Cacaalavra\SearchWord;
     <input type="submit" value="BUSCAR" id="bot" name="bt-send">
 
     <?php
-    error_reporting(0);
-    if(isset($_POST['bt-send']))
-    {
-        $word = filter_input(INPUT_POST,'text',FILTER_SANITIZE_SPECIAL_CHARS);
-        try {
-            $resposta = SearchWord::searchWord($word);
-            if($resposta == NULL)
-            {
-                throw new Exception("Palavra não encontrada.", 1);
-            }
-            else
-            {
-                foreach ($resposta  as $resposta)
-                {
-                    echo "<pre>";
-                    print_r($resposta);
-                    echo "</pre>";
-                }
-            }
-        }
-        catch (Exception $e)
-            {
-                echo $e->getMessage();
-            }
 
-    }
+        $word = filter_input(INPUT_POST,'text',FILTER_SANITIZE_SPECIAL_CHARS);
+        $resposta = SearchWord::searchWord($word);
+
+        print_r($resposta);
+
     ?>
 
 
