@@ -21,6 +21,12 @@ use  Jdev\Cacaalavra\SearchWord;
         $word = filter_input(INPUT_POST,'text',FILTER_SANITIZE_SPECIAL_CHARS);
         $resposta = SearchWord::searchWord($word);
 
+        if(is_null($resposta))
+        {
+            echo "Palavra ou termo não encontrado, ou houve falha na requisição.";
+        }
+
+
         print_r($resposta);
 
     ?>

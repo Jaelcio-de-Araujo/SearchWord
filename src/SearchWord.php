@@ -8,9 +8,6 @@ class SearchWord
         $url = "https://significado.herokuapp.com/v2/".$word."/";
         $response = file_get_contents($url);
         $response =  json_decode($response, true);
-        return isset($response['meanings']) ? $response : null;
-
-
-
+        return isset($response['partOfSpeech']) ? $response : null;
     }
 }
