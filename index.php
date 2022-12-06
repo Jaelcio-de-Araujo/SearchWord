@@ -26,7 +26,6 @@ use  Jdev\Cacaalavra\SearchWord;
             echo "Palavra ou termo não encontrado, ou houve falha na requisição.";
         }
 
-
         print_r($resposta);
 
     ?>
